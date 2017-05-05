@@ -1,0 +1,23 @@
+# Database settings.
+database:
+
+  # the name of your JDBC driver
+  driverClass: org.apache.derby.jdbc.ClientDriver
+
+  # the username
+  user: admin
+
+  # the password
+  password: P@ssw0rd
+
+  # the JDBC URL
+  url: jdbc:derby://localhost:1527/inventorydb;user=admin;password=P@ssw0rd
+
+
+
+# server configuration
+server:
+  type: simple
+  connector:
+    type: http
+    port: 8080
