@@ -9,5 +9,5 @@ import com.thoughtworks.library.inventory.model.BookAvailabilityInfo;
  */
 public interface BookAvailabilitySearchService {
 
-	public BookAvailabilityInfo getInventoryDetails();
+	public BookAvailabilityInfo getInventoryDetails(String ISBN);
 }
