@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.skife.jdbi.v2.DBI;
 
 import com.thoughtworks.library.inventory.dbaccess.BookAvailabilityDAO;
-import com.thoughtworks.library.inventory.model.BookAvailabilityInfo;
+import com.thoughtworks.library.inventory.model.BookInventoryInfo;
 
 public class BookAvailabilitySearchServiceImplTest {
 
@@ -29,7 +29,8 @@ public class BookAvailabilitySearchServiceImplTest {
 	@Test
 	public final void testBookAvailabilitySearchServiceImpl() {
 		String input = "978-3-16-148412-0";
-		BookAvailabilityInfo result = service.getInventoryDetails(input);
+		BookInventoryInfo result = service.getInventoryDetails(input);
+		System.out.println(result.toString());
 		if(result == null){			
 			fail ("Exepected valid result, but received null response");
 		}else{

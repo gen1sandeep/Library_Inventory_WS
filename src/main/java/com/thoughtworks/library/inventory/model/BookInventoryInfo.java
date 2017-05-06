@@ -7,10 +7,10 @@ package com.thoughtworks.library.inventory.model;
  * @author Sandeep_Alla
  *
  */
-public class BookAvailabilityInfo {
+public class BookInventoryInfo {
 	
 	// no arg constructor required for serialization
-	public BookAvailabilityInfo() {
+	public BookInventoryInfo() {
 	}
 	
 	String ISBN;

@@ -1,6 +1,6 @@
 package com.thoughtworks.library.inventory.service;
 
-import com.thoughtworks.library.inventory.model.BookAvailabilityInfo;
+import com.thoughtworks.library.inventory.model.BookInventoryInfo;
 
 /**
  * definition for book availability service 
@@ -9,5 +9,5 @@ import com.thoughtworks.library.inventory.model.BookAvailabilityInfo;
  */
 public interface BookAvailabilitySearchService {
 
-	public BookAvailabilityInfo getInventoryDetails(String ISBN);
+	public BookInventoryInfo getInventoryDetails(String ISBN);
 }

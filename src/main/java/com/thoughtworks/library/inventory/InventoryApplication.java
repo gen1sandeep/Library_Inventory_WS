@@ -5,7 +5,7 @@ import org.skife.jdbi.v2.DBI;
 
 import com.thoughtworks.library.inventory.api.resources.InventoryHealthCheckResource;
 import com.thoughtworks.library.inventory.dbaccess.BookAvailabilityDAO;
-import com.thoughtworks.library.inventory.model.BookAvailabilityInfo;
+import com.thoughtworks.library.inventory.model.BookInventoryInfo;
 
 import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
