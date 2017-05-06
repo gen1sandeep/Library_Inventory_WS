@@ -16,6 +16,7 @@ public class BookAvailabilityInfoMapper implements ResultSetMapper<BookInventory
 		info.setAvalilableBookCount(resultSet.getInt("AVAILABLE_COUNT"));
 		info.setIssuedBookCount(resultSet.getInt("ISSUED_COUNT"));
 		info.setArchivedBookCount(resultSet.getInt("ARCHIVE_COUNT"));
+		info.setTotalBookCount(resultSet.getInt("TOTAL_COUNT"));
 		return info;
 	}
 }

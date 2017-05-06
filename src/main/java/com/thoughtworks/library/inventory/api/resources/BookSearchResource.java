@@ -16,8 +16,7 @@ import com.thoughtworks.library.inventory.service.BookAvailabilitySearchService;
 
  
 
-@Path("/books") 
-@Consumes(MediaType.APPLICATION_JSON) 
+@Path("/books")
 @Produces(MediaType.APPLICATION_JSON) 
 public class BookSearchResource { 
  
