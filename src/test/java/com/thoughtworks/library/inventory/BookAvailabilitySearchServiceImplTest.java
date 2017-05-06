@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.skife.jdbi.v2.DBI;
 
+import com.thoughtworks.library.inventory.common.exception.IncorrectRequestDataException;
 import com.thoughtworks.library.inventory.dbaccess.BookAvailabilityDAO;
 import com.thoughtworks.library.inventory.model.BookInventoryInfo;
 import com.thoughtworks.library.inventory.service.BookAvailabilitySearchService;
@@ -36,15 +37,21 @@ public class BookAvailabilitySearchServiceImplTest {
 		BookInventoryInfo result = service.getInventoryDetails(input);
 		System.out.println(result.toString());
 		assert(result.getISBN().equalsIgnoreCase(input));
+		
 		}
 	
-	@Test(/*expected=Exception.class*/)
+	
+	@Test(expected=IncorrectRequestDataException.class)
 	public final void testBookAvailabilitySearchServiceImplforFailure() {
 		String input = "";
-		service.getInventoryDetails(input);
-	
-		}
-		
+		service.getInventoryDetails(input);	
+	}
+
+	@Test(expected=IncorrectRequestDataException.class)
+	public final void testwithalpabeticISBNNumber() {
+		String input = "abc";
+		service.getInventoryDetails(input);	
+	}
 		
 	}
 

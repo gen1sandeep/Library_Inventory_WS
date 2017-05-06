@@ -10,27 +10,25 @@ import com.thoughtworks.library.inventory.service.BookAvailabilitySearchServiceI
 public class InjectionUtil {
 
 	
-	private BookAvailabilityDAO dao;
-
-	private void initialize() {
+	DBI dbi;
+	
+	public InjectionUtil() {
 		// temporary : to be replaced by mocking library
-		try {
-			Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		String url = "jdbc:derby://localhost:1527/inventorydb;user=admin;password=P@ssw0rd";
-		DBI dbi = new DBI(url);
-		dao = dbi.onDemand(BookAvailabilityDAO.class);
-		
+				try {
+					Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
+				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+				String url = "jdbc:derby://localhost:1527/inventorydb;user=admin;password=P@ssw0rd";
+				dbi = new DBI(url);				
 	}
 
 	public BookAvailabilityDAO getBookingAvailabiltyDAO() {
-		initialize();
-		return dao;
+		return dbi.onDemand(BookAvailabilityDAO.class);
 	}
-	public BookAvailabilitySearchService getBookingSerachService() {
-		initialize();
-		return new BookAvailabilitySearchServiceImpl(dao);
+	public BookAvailabilitySearchService getBookingSerachService() {		
+		return new BookAvailabilitySearchServiceImpl(getBookingAvailabiltyDAO());
 	}
+	
+	
 }

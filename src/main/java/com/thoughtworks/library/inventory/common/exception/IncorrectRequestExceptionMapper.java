@@ -6,7 +6,7 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 @Provider
-public class DataNotFoundExceptionMapper implements ExceptionMapper<IncorrectRequestDataException> {
+public class IncorrectRequestExceptionMapper implements ExceptionMapper<IncorrectRequestDataException> {
 
 	@Override
 	public Response toResponse(IncorrectRequestDataException ex) {		

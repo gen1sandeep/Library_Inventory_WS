@@ -30,8 +30,7 @@ public class BookSearchResource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)	
-	public BookInventoryInfo getUsers(@QueryParam("isbn") String ISBN){
-		System.out.println("reached resource");
+	public BookInventoryInfo getUsers(@QueryParam("isbn") String ISBN){		
 		BookInventoryInfo info=null;
 		try {
 			info = serviceImpl.getInventoryDetails(ISBN);
