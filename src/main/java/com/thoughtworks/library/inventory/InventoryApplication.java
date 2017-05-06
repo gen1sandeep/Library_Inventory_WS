@@ -1,10 +1,11 @@
 package com.thoughtworks.library.inventory;
 
 
-import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.skife.jdbi.v2.DBI;
 
 import com.thoughtworks.library.inventory.api.resources.InventoryHealthCheckResource;
+import com.thoughtworks.library.inventory.dbaccess.BookAvailabilityDAO;
+import com.thoughtworks.library.inventory.model.BookAvailabilityInfo;
 
 import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
@@ -28,14 +29,13 @@ public class InventoryApplication extends Application<InventoryConfiguration> {
     public void run(InventoryConfiguration configuration, Environment environment) {
     	
 		// initialize JDBI
-		final DBIFactory factory = new DBIFactory();
+		DBIFactory factory = new DBIFactory();
 		final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "derby");
-
     	// use metrics healthchecks
     	environment.jersey().register(new InventoryHealthCheckResource(environment.healthChecks()));
     	
     	// basic echo service       
-        environment.jersey().register(RolesAllowedDynamicFeature.class);
+    	//environment.jersey().register(RolesAllowedDynamicFeature.class);
 
     }
 }

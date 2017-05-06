@@ -12,10 +12,10 @@ public class BookAvailabilityInfoMapper implements ResultSetMapper<BookAvailabil
 	@Override
 	public BookAvailabilityInfo map(int idx, ResultSet resultSet, StatementContext ctx) throws SQLException {
 		BookAvailabilityInfo info = new BookAvailabilityInfo();
-		info.setISBN(resultSet.getString("Id"));
-		info.setAvalilableBookCount(resultSet.getInt("Id"));
-		info.setIssuedBookCount(resultSet.getInt("Id"));
-		info.setTotalBookCount(resultSet.getInt("Id"));
+		info.setISBN(resultSet.getString("ISBN"));
+		info.setAvalilableBookCount(resultSet.getInt("AVAILABLE_COUNT"));
+		info.setIssuedBookCount(resultSet.getInt("ISSUED_COUNT"));
+		info.setArchivedBookCount(resultSet.getInt("ARCHIVE_COUNT"));
 		return info;
 	}
 }

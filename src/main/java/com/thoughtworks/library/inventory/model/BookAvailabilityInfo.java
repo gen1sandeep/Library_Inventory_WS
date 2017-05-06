@@ -48,5 +48,11 @@ public class BookAvailabilityInfo {
 	public void setArchivedBookCount(int archivedBookCount) {
 		this.archivedBookCount = archivedBookCount;
 	}
+	@Override
+	public String toString() {
+		return "BookAvailabilityInfo [ISBN=" + ISBN + ", totalBookCount=" + totalBookCount + ", issuedBookCount="
+				+ issuedBookCount + ", avalilableBookCount=" + avalilableBookCount + ", archivedBookCount="
+				+ archivedBookCount + "]";
+	}
 
 }
