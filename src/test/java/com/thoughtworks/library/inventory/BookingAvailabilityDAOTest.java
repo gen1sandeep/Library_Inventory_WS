@@ -1,4 +1,4 @@
-package com.thoughtworks.library.inventory.dbaccess;
+package com.thoughtworks.library.inventory;
 
 import static org.junit.Assert.fail;
 
@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.skife.jdbi.v2.DBI;
 
+import com.thoughtworks.library.inventory.dbaccess.BookAvailabilityDAO;
 import com.thoughtworks.library.inventory.model.BookInventoryInfo;
 
 public class BookingAvailabilityDAOTest{

@@ -3,9 +3,11 @@ package com.thoughtworks.library.inventory;
 
 import org.skife.jdbi.v2.DBI;
 
+import com.thoughtworks.library.inventory.api.resources.BookSearchResource;
+import com.thoughtworks.library.inventory.api.resources.EchoResource;
 import com.thoughtworks.library.inventory.api.resources.InventoryHealthCheckResource;
 import com.thoughtworks.library.inventory.dbaccess.BookAvailabilityDAO;
-import com.thoughtworks.library.inventory.model.BookInventoryInfo;
+import com.thoughtworks.library.inventory.service.BookAvailabilitySearchServiceImpl;
 
 import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
@@ -18,6 +20,11 @@ public class InventoryApplication extends Application<InventoryConfiguration> {
         new InventoryApplication().run(args);
     }
 
+    
+    @Override
+    public String getName() {
+        return "inventory";
+    }
 
 
     @Override
@@ -28,14 +35,25 @@ public class InventoryApplication extends Application<InventoryConfiguration> {
     @Override
     public void run(InventoryConfiguration configuration, Environment environment) {
     	
-		// initialize JDBI
-		DBIFactory factory = new DBIFactory();
-		final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "derby");
+    	//set context paths
+        environment.getApplicationContext().setContextPath("/inventory/");
+        environment.getAdminContext().setContextPath("/admin/");
+    	
     	// use metrics healthchecks
     	environment.jersey().register(new InventoryHealthCheckResource(environment.healthChecks()));
     	
-    	// basic echo service       
-    	//environment.jersey().register(RolesAllowedDynamicFeature.class);
+    	
+		// initialize JDBI
+		DBIFactory factory = new DBIFactory();
+		final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "derby");
+    	
+    	// temporary solution -- To be addressed by DI library
+    	   BookAvailabilityDAO bookAvailabilityDAO =  jdbi.onDemand(BookAvailabilityDAO.class);
+    	// temporarty solution -- To be addressed by DI library
+    	   
+    	  //environment.jersey().register(new DependencyBinder());
+    	  environment.jersey().register(new BookSearchResource(new BookAvailabilitySearchServiceImpl(bookAvailabilityDAO)));
+    	  environment.jersey().register(new EchoResource());
 
     }
 }

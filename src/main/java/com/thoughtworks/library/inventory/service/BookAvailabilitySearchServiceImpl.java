@@ -13,8 +13,7 @@ public class BookAvailabilitySearchServiceImpl implements BookAvailabilitySearch
 	@Override
 	public BookInventoryInfo getInventoryDetails(String ISBN) {
 
-        BookInventoryInfo info= bookAvailabilityDAO.findBookAvailabilityInfo("978-3-16-148412-0");
-        
+        BookInventoryInfo info= bookAvailabilityDAO.findBookAvailabilityInfo(ISBN);        
         return info;
 	}
 

@@ -1,5 +1,5 @@
 package com.thoughtworks.library.inventory.api.resources;
- 
+
 import java.util.Map.Entry;
 import java.util.SortedMap;
 
@@ -11,29 +11,28 @@ import javax.ws.rs.core.Response.Status;
 import com.codahale.metrics.annotation.Timed;
 import com.codahale.metrics.health.HealthCheck;
 import com.codahale.metrics.health.HealthCheck.Result;
-import com.codahale.metrics.health.HealthCheckRegistry; 
- 
-@Path(value="healthdetails") 
-public class InventoryHealthCheckResource { 
- 
- private HealthCheckRegistry health; 
- 
-  
- public InventoryHealthCheckResource(HealthCheckRegistry health){ 
-  this.health = health; 
- } 
-  
-  
- @GET 
- @Timed 
- public Response provideApplicationMetrics(){ 
-  final SortedMap<String, HealthCheck.Result> results = this.health.runHealthChecks(); 
-  for(Entry<String, Result> entryResult : results.entrySet()){ 
-   // 
-   if(!entryResult.getValue().isHealthy()){ 
-    return Response.status(Status.INTERNAL_SERVER_ERROR).entity(entryResult.getValue().getMessage()).build(); 
-   } 
-  } 
-  return Response.status(Status.OK).entity("Healthy!").build(); 
- } 
+import com.codahale.metrics.health.HealthCheckRegistry;
+
+@Path(value = "healthdetails")
+public class InventoryHealthCheckResource {
+
+	private HealthCheckRegistry health;
+
+	public InventoryHealthCheckResource(HealthCheckRegistry health) {
+		this.health = health;
+	}
+
+	@GET
+	@Timed
+	public Response provideApplicationMetrics() {
+		final SortedMap<String, HealthCheck.Result> results = this.health.runHealthChecks();
+		for (Entry<String, Result> entryResult : results.entrySet()) {
+			//
+			if (!entryResult.getValue().isHealthy()) {
+				return Response.status(Status.INTERNAL_SERVER_ERROR).entity(entryResult.getValue().getMessage())
+						.build();
+			}
+		}
+		return Response.status(Status.OK).entity("Healthy!").build();
+	}
 }

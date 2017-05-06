@@ -1,4 +1,4 @@
-package com.thoughtworks.library.inventory.service;
+package com.thoughtworks.library.inventory;
 
 import static org.junit.Assert.fail;
 
@@ -8,12 +8,16 @@ import org.skife.jdbi.v2.DBI;
 
 import com.thoughtworks.library.inventory.dbaccess.BookAvailabilityDAO;
 import com.thoughtworks.library.inventory.model.BookInventoryInfo;
+import com.thoughtworks.library.inventory.service.BookAvailabilitySearchService;
+import com.thoughtworks.library.inventory.service.BookAvailabilitySearchServiceImpl;
 
 public class BookAvailabilitySearchServiceImplTest {
 
 	private BookAvailabilitySearchService service;
 	@Before
 	public void setup(){
+		
+		// temporary : to be replaced by mocking library
 		try {
 			Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
@@ -31,11 +35,7 @@ public class BookAvailabilitySearchServiceImplTest {
 		String input = "978-3-16-148412-0";
 		BookInventoryInfo result = service.getInventoryDetails(input);
 		System.out.println(result.toString());
-		if(result == null){			
-			fail ("Exepected valid result, but received null response");
-		}else{
-			assert(result.getISBN().equalsIgnoreCase(input));
-			}
+		assert(result.getISBN().equalsIgnoreCase(input));
 		}
 	
 	@Test(/*expected=Exception.class*/)
