@@ -18,7 +18,7 @@ public interface ProcurementDAO {
 	@GetGeneratedKeys
 	long insertRecord(@BindBean final BookProcurementInfo inputVO);
 
-	@SqlQuery("SELECT bookId, ISBN, BOOK_STATUS, SHELF_DETAILS  from STOCK_DETAILS WHERE bookId = :bookId\n")
+	@SqlQuery("SELECT BOOK_ID, ISBN, BOOK_STATUS, SHELF_DETAILS  from STOCK_DETAILS WHERE BOOK_ID = :bookId\n")
 	BookProcurementInfo getBookProcurementInfo(@Bind("bookId") long bookId);
 
 }

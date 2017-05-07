@@ -1,12 +1,13 @@
-package com.thoughtworks.library.inventory.service;
+package com.thoughtworks.library.inventory;
 
 import org.junit.Test;
 
-import com.thoughtworks.library.inventory.InjectionUtil;
 import com.thoughtworks.library.inventory.common.exception.IncorrectRequestDataException;
 import com.thoughtworks.library.inventory.model.BookProcurementInfo;
+import com.thoughtworks.library.inventory.service.ProcurementService;
+import com.thoughtworks.library.inventory.service.ProcurementServiceImpl;
 
-public class ProcurementServiceImplTest {
+public class ProcurementDetailsImplCreateTest {
 
 	@Test
 	public final void testProcurementService() {

@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.thoughtworks.library.inventory.common.exception.DataNotFoundException;
 import com.thoughtworks.library.inventory.model.BookInventoryInfo;
 import com.thoughtworks.library.inventory.service.BookAvailabilitySearchService;
 
@@ -30,11 +31,11 @@ public class BookSearchResource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)	
-	public BookInventoryInfo getUsers(@QueryParam("isbn") String ISBN){		
+	public BookInventoryInfo getInventoryDetails(@QueryParam("isbn") String isbn){		
 		BookInventoryInfo info=null;
 		try {
-			info = serviceImpl.getInventoryDetails(ISBN);
-		} catch (Exception e) {
+			info = serviceImpl.getInventoryDetails(isbn);
+		} catch (DataNotFoundException e) {
 			logger.error("Error while fetching book information.",e);
 			// throwing down further to handle exception and send relevant response to client
 			throw e;

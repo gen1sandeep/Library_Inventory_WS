@@ -13,10 +13,10 @@ public class BookProcurementInfoMapper implements ResultSetMapper<BookProcuremen
 	@Override
 	public BookProcurementInfo map(int idx, ResultSet resultSet, StatementContext ctx) throws SQLException {
 		BookProcurementInfo info = new BookProcurementInfo();
-		info.setIsbn(resultSet.getString("ISBN"));
-		info.setBookId(resultSet.getInt("AVAILABLE_COUNT"));
-		info.setBookStatus(resultSet.getString("ISSUED_COUNT"));
-		info.setShelfDetails(resultSet.getString("ARCHIVE_COUNT"));		
+		info.setBookId(resultSet.getLong("BOOK_ID"));
+		info.setBookStatus(resultSet.getString("BOOK_STATUS"));
+		info.setIsbn(resultSet.getString("ISBN"));		
+		info.setShelfDetails(resultSet.getString("SHELF_DETAILS"));		
 		return info;
 	}
 }

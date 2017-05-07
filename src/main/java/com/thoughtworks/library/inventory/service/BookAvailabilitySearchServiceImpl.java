@@ -18,7 +18,9 @@ public class BookAvailabilitySearchServiceImpl implements BookAvailabilitySearch
 		if(ISBN==null || ISBN.length() == 0 || ISBN.matches("^[a-zA-Z]*$")){
 			throw new IncorrectRequestDataException("Invalid Request Details received. Not a valid ISBN::"+ISBN);
 		}
+		
         BookInventoryInfo info= bookAvailabilityDAO.findBookAvailabilityInfo(ISBN);   
+        
         if(info == null){
         	throw new DataNotFoundException("No Records found for ["+ ISBN +"] ISBN Number");
         }

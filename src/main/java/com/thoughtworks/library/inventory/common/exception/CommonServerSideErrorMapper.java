@@ -19,7 +19,5 @@ public class CommonServerSideErrorMapper implements ExceptionMapper<Exception> {
 		return Response.status(Status.INTERNAL_SERVER_ERROR)
 				.entity(errorMessage)
 				.build();
-	}
-	
-
+	}	
 }

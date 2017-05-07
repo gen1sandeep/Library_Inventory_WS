@@ -5,4 +5,5 @@ import com.thoughtworks.library.inventory.model.BookProcurementInfo;
 public interface ProcurementService {
 
 	public long procureBook(BookProcurementInfo info);
+	public BookProcurementInfo getProcurementDetails(long bookId);
 }

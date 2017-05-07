@@ -1,20 +1,18 @@
 package com.thoughtworks.library.inventory;
 
-import static org.junit.Assert.fail;
-
-import org.junit.Before;
 import org.junit.Test;
-import org.skife.jdbi.v2.DBI;
 
 import com.thoughtworks.library.inventory.common.exception.IncorrectRequestDataException;
-import com.thoughtworks.library.inventory.dbaccess.BookAvailabilityDAO;
 import com.thoughtworks.library.inventory.model.BookInventoryInfo;
 import com.thoughtworks.library.inventory.service.BookAvailabilitySearchService;
-import com.thoughtworks.library.inventory.service.BookAvailabilitySearchServiceImpl;
 
 public class BookAvailabilitySearchServiceImplTest {
 
-	private BookAvailabilitySearchService service;
+	private BookAvailabilitySearchService service=new InjectionUtil().getBookingSerachService();
+	
+	// creation of dependencies moved to injection util file
+	
+	/*	
 	@Before
 	public void setup(){
 		
@@ -29,8 +27,12 @@ public class BookAvailabilitySearchServiceImplTest {
 		BookAvailabilityDAO dao = dbi.onDemand(BookAvailabilityDAO.class);
 		service = new BookAvailabilitySearchServiceImpl(dao);
 		};
+	*/
 	
 	
+	/*
+	 * Validate for Success Scenario
+	 */
 	@Test
 	public final void testBookAvailabilitySearchServiceImpl() {
 		String input = "978-3-16-148412-0";
@@ -41,12 +43,18 @@ public class BookAvailabilitySearchServiceImplTest {
 		}
 	
 	
+	/*
+	 * Validate Book Search with out sending ISBN Number
+	 */
 	@Test(expected=IncorrectRequestDataException.class)
 	public final void testBookAvailabilitySearchServiceImplforFailure() {
 		String input = "";
 		service.getInventoryDetails(input);	
 	}
 
+	/*
+	 * Validate Book Search with invalid ISBN
+	 */
 	@Test(expected=IncorrectRequestDataException.class)
 	public final void testwithalpabeticISBNNumber() {
 		String input = "abc";
