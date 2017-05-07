@@ -15,8 +15,6 @@ public class BookAvailabilitySearchServiceImpl implements BookAvailabilitySearch
 	@Override
 	public BookInventoryInfo getInventoryDetails(String ISBN) {
 
-		
-	
 		if(ISBN==null || ISBN.length() == 0 || ISBN.matches("^[a-zA-Z]*$")){
 			throw new IncorrectRequestDataException("Invalid Request Details received. Not a valid ISBN::"+ISBN);
 		}
