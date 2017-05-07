@@ -1,19 +1,19 @@
 # Database settings.
+
 database:
-
-  # the name of your JDBC driver
   driverClass: org.apache.derby.jdbc.ClientDriver
-
-  # the username
   user: admin
-
-  # the password
   password: P@ssw0rd
-
-  # the JDBC URL
-  url: jdbc:derby://localhost:1527/inventorydb;user=admin;password=P@ssw0rd
-
-
+  url: jdbc:derby://localhost:1527/inventorydb
+  properties:
+    charSet: UTF-8
+  maxWaitForConnection: 1s
+  validationQuery: "/* MyService Health Check */ values 1"
+  minSize: 8
+  maxSize: 16
+  checkConnectionWhileIdle: false
+  evictionInterval: 10s
+  minIdleTime: 1 minute
 
 # server configuration
 server:
